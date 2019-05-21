@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+//verivikasi email user
+Auth::routes(['verify' => true]);
+
+Route::get('/admin','statusController@admin')->middleware(['auth','cekRole:1']);
+
+Route::get('/home', 'HomeController@index')->name('home');
